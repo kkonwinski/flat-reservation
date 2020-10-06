@@ -8,11 +8,9 @@
     <table class="table">
         <thead>
         <tr>
-            <th scope="col">#</th>
-            <th scope="col">Liczba wolnych miejsc</th>
-
-
-            <th scope="col">Actions</th>
+            <th scope="col">Liczba pozycji</th>
+            <th scope="col">Liczba dostepnych miejsc</th>
+            <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
@@ -21,11 +19,11 @@
             <tr>
                 <th scope="row">{{ flat.id }}</th>
                 <td>{{ flat.slots }}</td>
-                <td><a href="{{ path('app_add_to_booking_cart',{'id':flat.id}) }}" class="btn btn-outline-primary">zamów miejsce</a></td>
+                <td><input type="number" placeholder="Wpisz ile miejsc chcesz zarezerwować" class="form-control"></td>
             </tr>
         {% endfor %}
-
         </tbody>
     </table>
+    <a href="#" class="btn btn-success">Złóż zamówienie</a>
 
 {% endblock %}

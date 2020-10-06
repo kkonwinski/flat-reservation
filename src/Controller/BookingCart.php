@@ -4,7 +4,10 @@
 namespace App\Controller;
 
 use App\Entity\Flat;
+use App\Repository\FlatRepository;
+use App\Services\BookingCart\AddToBookingCart;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
@@ -24,34 +27,32 @@ class BookingCart extends AbstractController
 
     /**
      * @Route ("/add/{id}",name="app_add_to_booking_cart")
+     * @param Flat $flat
+     * @param AddToBookingCart $toBookingCart
+     * @return RedirectResponse
      */
-    public function add(Flat $flat)
+    public function add(Flat $flat, AddToBookingCart $toBookingCart): RedirectResponse
     {
-        $cart = $this->session->get('flatBooking', []);
-        $cart[] = $flat->getId();
-        if (!in_array($flat->getId(), $cart)) {
-            $this->session->set('flatBooking', $cart);
-        }
+        $toBookingCart->addUniqueElementIdFromSessionToCart($flat->getId());
+
         return $this->redirectToRoute('flat');
     }
 
     /**
      * @Route ("/show",name="app_show_booking_cart")
      */
-    public function showCart()
+    public function showCart(FlatRepository $flatRepository)
     {
-
         $cart = $this->session->get('flatBooking', []);
-        //$this->session->remove('flatBooking');
-dd($cart);
+        $flats = [];
+        foreach ($cart as $cartId) {
+            $flats[] = $flatRepository->find($cartId);
 
-        foreach ($cart as $id => $slots) {
-            $cartWithData[] = [
-                'id' => $id,
-                'slots' => $slots
-            ];
         }
-        return $this->redirectToRoute('flat');
+        return $this->render('bookingCart/show.html.twig', [
+            'flats' => $flats
+        ]);
+
     }
 
 }
