@@ -8,7 +8,7 @@ use App\Repository\FlatRepository;
 use App\Services\BookingCart\AddToBookingCart;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -40,14 +40,15 @@ class BookingCart extends AbstractController
 
     /**
      * @Route ("/show",name="app_show_booking_cart")
+     * @param FlatRepository $flatRepository
+     * @return Response
      */
-    public function showCart(FlatRepository $flatRepository)
+    public function showCart(FlatRepository $flatRepository): Response
     {
         $cart = $this->session->get('flatBooking', []);
         $flats = [];
         foreach ($cart as $cartId) {
             $flats[] = $flatRepository->find($cartId);
-
         }
         return $this->render('bookingCart/show.html.twig', [
             'flats' => $flats
