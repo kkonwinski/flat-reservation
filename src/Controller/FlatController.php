@@ -2,18 +2,29 @@
 
 namespace App\Controller;
 
+use App\Repository\FlatRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
 class FlatController extends AbstractController
 {
+
+    private $flatRepository;
+
+    public function __construct(FlatRepository  $flatRepository)
+    {
+
+        $this->flatRepository = $flatRepository;
+    }
+
     /**
      * @Route("/flat", name="flat")
      */
     public function index()
     {
+
         return $this->render('flat/index.html.twig', [
-            'controller_name' => 'FlatController',
+            'flats' => $this->flatRepository->findAll(),
         ]);
     }
 }
