@@ -96,7 +96,7 @@ class CustomAuthenticator extends AbstractFormLoginAuthenticator implements Pass
             return new RedirectResponse($targetPath);
         }
 
-        return new RedirectResponse($this->urlGenerator->generate('/'));
+        return new RedirectResponse($this->urlGenerator->generate('flat'));
     //    throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 

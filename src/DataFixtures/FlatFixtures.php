@@ -15,7 +15,10 @@ class FlatFixtures extends Fixture
 
         for ($i = 0; $i <= 20; $i++) {
             $flat = new Flat();
-            $flat->setSlots(random_int(1, 8));
+            try {
+                $flat->setSlots(random_int(1, 8));
+            } catch (\Exception $e) {
+            }
             $manager->persist($flat);
         }
         $manager->flush();
