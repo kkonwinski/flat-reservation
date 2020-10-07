@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Flat;
 use App\Entity\Order;
+use App\Repository\FlatRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -11,6 +13,8 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\DateTime;
+use Symfony\Component\Validator\Constraints\LessThanOrEqual;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class OrderType extends AbstractType
 {
@@ -19,16 +23,29 @@ class OrderType extends AbstractType
         $builder
             ->add('start', DateType::class, [
                 'required' => true,
-                'format' => 'dd-MM-yyyy'
-            ])
+                'format' => 'dd-MM-yyyy',
+                'constraints' => [
+                    new NotBlank,
+//                    new LessThanOrEqual([
+//                        'propertyPath' => 'finish'
+//
+//                    ])
+
+            ]])
             ->add('finish', DateType::class, [
                 'required' => true,
                 'format' => 'dd-MM-yyyy'
             ])
-            ->add('slots1', IntegerType::class, [
+            ->add('slots', null, [
                 'required' => true,
                 'label' => "Ile chcesz zarezerwowac slotów",
-                'mapped' => false
+                'mapped' => false,
+                'constraints' => [
+                    new NotBlank,
+                    new LessThanOrEqual(
+                        '8'
+                    )
+                ]
             ])
             ->add('save', SubmitType::class, [
                 'attr' => ['class' => 'btn btn-success'],

@@ -26,7 +26,6 @@ class OrderRepository extends ServiceEntityRepository
 
     public function create($value)
     {
-        dd($value);
         $this->entityManager->persist($value);
         $this->entityManager->flush();
     }

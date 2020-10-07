@@ -14,20 +14,22 @@
         </thead>
         <tbody>
 
-            <tr>
-                <th scope="row">{{ flats.id }}</th>
-                <td>{{ flats.slots }}</td>
-            </tr>
+        <tr>
+            <th scope="row">{{ flats.id }}</th>
+            <td>{{ flats.slots }}</td>
+        </tr>
 
         </tbody>
     </table>
     <div class="col-12">
-    {{ form_start(flatReservationInfos) }}
-    {{ form_row(flatReservationInfos.start) }}
-    {{ form_row(flatReservationInfos.finish) }}
-    {{ form_row(flatReservationInfos.slots1) }}
+        {{ form_errors(flatReservationInfos) }}
 
-    {{ form_row(flatReservationInfos.save, { 'label': 'Submit me' }) }}
-    {{ form_end(flatReservationInfos) }}
+        {{ form_start(flatReservationInfos) }}
+        {{ form_row(flatReservationInfos.start) }}
+        {{ form_row(flatReservationInfos.finish) }}
+        {{ form_row(flatReservationInfos.slots) }}
+
+        {{ form_row(flatReservationInfos.save, { 'label': 'Submit me' }) }}
+        {{ form_end(flatReservationInfos) }}
     </div>
 {% endblock %}

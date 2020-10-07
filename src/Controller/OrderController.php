@@ -24,7 +24,6 @@ class OrderController extends AbstractController
     public function show(CreateOrder $createOrder, Flat $flat, Request $request)
     {
         $form = $this->createForm(OrderType::class);
-
         if ($createOrder->createOrder($flat, $form, $request) == true) {
             return $this->redirectToRoute('flat');
         } else {
