@@ -46,6 +46,8 @@ class User implements UserInterface
         $this->orders = new ArrayCollection();
     }
 
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -154,4 +156,6 @@ class User implements UserInterface
 
         return $this;
     }
+
+ 
 }

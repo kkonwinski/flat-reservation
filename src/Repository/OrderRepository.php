@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Order;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -14,11 +15,21 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class OrderRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+
+    private $entityManager;
+
+    public function __construct(ManagerRegistry $registry, EntityManagerInterface $entityManager)
     {
         parent::__construct($registry, Order::class);
+        $this->entityManager = $entityManager;
     }
 
+    public function create($value)
+    {
+        dd($value);
+        $this->entityManager->persist($value);
+        $this->entityManager->flush();
+    }
     // /**
     //  * @return Order[] Returns an array of Order objects
     //  */

@@ -27,12 +27,18 @@ class Order
     /**
      * @ORM\Column(type="datetime")
      */
-    private $bookingStart;
+    private $start;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $bookingEnd;
+    private $finish;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Flat::class, inversedBy="orders")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $flat;
 
     public function getId(): ?int
     {
@@ -51,26 +57,38 @@ class Order
         return $this;
     }
 
-    public function getBookingStart(): ?\DateTimeInterface
+    public function getStart(): ?\DateTimeInterface
     {
-        return $this->bookingStart;
+        return $this->start;
     }
 
-    public function setBookingStart(\DateTimeInterface $bookingStart): self
+    public function setStart(\DateTimeInterface $start): self
     {
-        $this->bookingStart = $bookingStart;
+        $this->start = $start;
 
         return $this;
     }
 
-    public function getBookingEnd(): ?\DateTimeInterface
+    public function getFinish(): ?\DateTimeInterface
     {
-        return $this->bookingEnd;
+        return $this->finish;
     }
 
-    public function setBookingEnd(\DateTimeInterface $bookingEnd): self
+    public function setFinish(\DateTimeInterface $finish): self
     {
-        $this->bookingEnd = $bookingEnd;
+        $this->finish = $finish;
+
+        return $this;
+    }
+
+    public function getFlat(): ?Flat
+    {
+        return $this->flat;
+    }
+
+    public function setFlat(?Flat $flat): self
+    {
+        $this->flat = $flat;
 
         return $this;
     }
