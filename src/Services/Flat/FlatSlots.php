@@ -17,7 +17,7 @@ class FlatSlots
         $availableFlatsArr = array();
         foreach ($flats as $flat) {
             if (($flat['slots'] - $flat['reservedSlots']) > 0) {
-                $flatsArr[] = $flat;
+                $availableFlatsArr[] = $flat;
             }
         }
         return $availableFlatsArr;

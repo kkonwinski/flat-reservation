@@ -21,7 +21,8 @@ class CreateOrder
         Security $security,
         EntityManagerInterface $em,
         OrderRepository $orderRepository
-    ) {
+    )
+    {
 
         $this->security = $security;
         $this->em = $em;
@@ -38,8 +39,11 @@ class CreateOrder
     {
         $startReservation = $order->getStart();
         $finishReservation = $order->getFinish();
-        $dateDiff = $startReservation->diff($finishReservation);
-        return $dateDiff->days;
+      //  if ($startReservation < $finishReservation) {
+            $dateDiff = $startReservation->diff($finishReservation);
+            return $dateDiff->days;
+//        }
+//        return false;
     }
 
     public function createOrderByFormData($formData, $flat): void
