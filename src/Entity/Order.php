@@ -41,6 +41,16 @@ class Order
      */
     private $flat;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $reservedSlots;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $discount;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -90,6 +100,30 @@ class Order
     public function setFlat(?Flat $flat): self
     {
         $this->flat = $flat;
+
+        return $this;
+    }
+
+    public function getReservedSlots(): ?int
+    {
+        return $this->reservedSlots;
+    }
+
+    public function setReservedSlots(int $reservedSlots): self
+    {
+        $this->reservedSlots = $reservedSlots;
+
+        return $this;
+    }
+
+    public function getDiscount(): ?float
+    {
+        return $this->discount;
+    }
+
+    public function setDiscount(?float $discount): self
+    {
+        $this->discount = $discount;
 
         return $this;
     }

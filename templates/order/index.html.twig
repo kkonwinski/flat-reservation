@@ -21,15 +21,5 @@
 
         </tbody>
     </table>
-    <div class="col-12">
-        {{ form_errors(flatReservationInfos) }}
-
-        {{ form_start(flatReservationInfos) }}
-        {{ form_row(flatReservationInfos.start) }}
-        {{ form_row(flatReservationInfos.finish) }}
-        {{ form_row(flatReservationInfos.slots) }}
-
-        {{ form_row(flatReservationInfos.save, { 'label': 'Submit me' }) }}
-        {{ form_end(flatReservationInfos) }}
-    </div>
+{% include 'order/_form.html.twig' %}
 {% endblock %}

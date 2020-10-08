@@ -24,31 +24,26 @@ class OrderType extends AbstractType
             ->add('start', DateType::class, [
                 'required' => true,
                 'format' => 'dd-MM-yyyy',
-                'constraints' => [
-                    new NotBlank,
+//                'constraints' => [
+//                    new NotBlank,
 //                    new LessThanOrEqual([
 //                        'propertyPath' => 'finish'
 //
 //                    ])
-
-            ]])
+            ])
             ->add('finish', DateType::class, [
                 'required' => true,
                 'format' => 'dd-MM-yyyy'
             ])
-            ->add('slots', null, [
+            ->add('reservedSlots', IntegerType::class, [
                 'required' => true,
                 'label' => "Ile chcesz zarezerwowac slotów",
-                'mapped' => false,
                 'constraints' => [
                     new NotBlank,
                     new LessThanOrEqual(
                         '8'
                     )
                 ]
-            ])
-            ->add('save', SubmitType::class, [
-                'attr' => ['class' => 'btn btn-success'],
             ]);
     }
 
