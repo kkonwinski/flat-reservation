@@ -16,11 +16,10 @@
         </tr>
         </thead>
         <tbody>
-
         {% for flat in flats %}
             <tr>
                 <th scope="row">{{ flat.id }}</th>
-                <td>{{ flat.slots }}</td>
+                <td>{{ flat.availableSlots }}</td>
                 <td><a href="{{ path('app_order_show',{'id':flat.id}) }}" class="btn btn-outline-primary">zamów miejsce</a></td>
             </tr>
         {% endfor %}

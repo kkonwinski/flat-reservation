@@ -4,6 +4,9 @@ namespace App\Repository;
 
 use App\Entity\Flat;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\AbstractQuery;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -26,6 +29,19 @@ class FlatRepository extends ServiceEntityRepository
             ->leftJoin('f.orders', 'orders')
             ->getQuery()
             ->getResult();
+    }
+
+
+    public function returnOneFlatWithActuallyAvailableSlots($value)
+    {
+
+            return $this->createQueryBuilder('f')
+                ->select('f.id', 'f.slots', 'orders.reservedSlots')
+                ->leftJoin('f.orders', 'orders')
+                ->where('f.id=:val')
+                ->setParameter('val', $value)
+                ->getQuery()
+                ->getResult();
     }
     // /**
     //  * @return Flat[] Returns an array of Flat objects

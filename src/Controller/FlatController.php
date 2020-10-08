@@ -27,7 +27,7 @@ class FlatController extends AbstractController
     public function index(): Response
     {
         $flats = $this->flatRepository->returnFlatsWithActuallyAvailableSlots();
-        $availableFlats = $this->flatSlots->changingValueAvailableSlots($flats);
+        $availableFlats = $this->flatSlots->getFlatsWithAvailableSlots($flats);
         return $this->render('flat/index.html.twig', [
             'flats' => $availableFlats,
         ]);

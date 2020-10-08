@@ -23,6 +23,7 @@ class OrderType extends AbstractType
         $builder
             ->add('start', DateType::class, [
                 'required' => true,
+                'label'=>'Początek rezerwacji',
                 'format' => 'dd-MM-yyyy',
 //                'constraints' => [
 //                    new NotBlank,
@@ -32,6 +33,7 @@ class OrderType extends AbstractType
 //                    ])
             ])
             ->add('finish', DateType::class, [
+                'label'=>'Koniec rezerwacji',
                 'required' => true,
                 'format' => 'dd-MM-yyyy'
             ])

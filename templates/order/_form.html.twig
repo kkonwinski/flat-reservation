@@ -1,14 +1,16 @@
-<div class="col-12">
-    {{ form_errors(flatReservationInfos) }}
+<div class="row">
+    <div class="col-12">
 
-    {{ form_start(flatReservationInfos) }}
-    {{ form_row(flatReservationInfos.start) }}
-    {{ form_row(flatReservationInfos.finish) }}
-    {{ form_row(flatReservationInfos.reservedSlots) }}
+        {{ form_errors(flatReservationInfos) }}
+        {{ form_start(flatReservationInfos) }}
+        {{ form_row(flatReservationInfos.start) }}
+        {{ form_row(flatReservationInfos.finish) }}
+        {{ form_row(flatReservationInfos.reservedSlots) }}
 
 
-    <div class="form-group">
-        <button class="btn btn-success">{{ button_label|default('złóż zamówinie') }}</button>
+        <div class="form-group">
+            <button class="btn btn-success">{{ button_label|default('Zarezerwuj !!!') }}</button>
+        </div>
+        {{ form_end(flatReservationInfos) }}
     </div>
-    {{ form_end(flatReservationInfos) }}
 </div>
