@@ -19,6 +19,14 @@ class FlatRepository extends ServiceEntityRepository
         parent::__construct($registry, Flat::class);
     }
 
+    public function returnFlatsWithActuallyAvailableSlots()
+    {
+        return $this->createQueryBuilder('f')
+            ->select('f.id', 'f.slots', 'orders.reservedSlots')
+            ->leftJoin('f.orders', 'orders')
+            ->getQuery()
+            ->getResult();
+    }
     // /**
     //  * @return Flat[] Returns an array of Flat objects
     //  */

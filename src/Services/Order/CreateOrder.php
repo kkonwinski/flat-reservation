@@ -6,9 +6,7 @@ namespace App\Services\Order;
 use App\Entity\Flat;
 use App\Entity\Order;
 use App\Repository\OrderRepository;
-use App\Services\Flat\ChangeFlatSlots;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
 
 class CreateOrder
