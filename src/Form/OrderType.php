@@ -2,17 +2,12 @@
 
 namespace App\Form;
 
-use App\Entity\Flat;
 use App\Entity\Order;
-use App\Repository\FlatRepository;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Component\Validator\Constraints\LessThanOrEqual;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
@@ -25,12 +20,6 @@ class OrderType extends AbstractType
                 'required' => true,
                 'label'=>'Początek rezerwacji',
                 'format' => 'dd-MM-yyyy',
-//                'constraints' => [
-//                    new NotBlank,
-//                    new LessThanOrEqual([
-//                        'propertyPath' => 'finish'
-//
-//                    ])
             ])
             ->add('finish', DateType::class, [
                 'label'=>'Koniec rezerwacji',
