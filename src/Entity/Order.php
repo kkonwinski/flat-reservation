@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\OrderRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=OrderRepository::class)
@@ -26,6 +27,7 @@ class Order
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\LessThan(propertyPath="finish", message="Data rozpoczęcia rezerwacji musi być wieksza niż data zakończenia rezerwacji!!!")
      */
     private $start;
 
@@ -42,6 +44,7 @@ class Order
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\LessThanOrEqual(propertyPath="id")
      */
     private $reservedSlots;
 
