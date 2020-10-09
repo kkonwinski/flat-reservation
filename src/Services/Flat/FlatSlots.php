@@ -16,7 +16,6 @@ class FlatSlots
         $availableFlatsArr = array();
         $mergedArrays = array();
         foreach ($flats as $key => $flat) {
-
             $availableSlots = $flat['slots'] - $flat['reservedSlots'];
             if ($availableSlots > 0) {
                 $arr1 = $availableFlatsArr[] = $flat;
